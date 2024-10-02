@@ -8,7 +8,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 /**
  *
@@ -41,6 +43,9 @@ public class User {
     
     @Column(name = "dairy_allergy", nullable = false)
     private boolean dairyAllergy;
+    
+    @OneToMany(mappedBy = "user")
+    private List<DiningReview> reviews;
 
     public User(Long id, String name, String city, int zipCode, boolean peanutAllergy, boolean eggAllergy, boolean dairyAllergy) {
         this.id = id;

@@ -27,13 +27,19 @@ public class DiningReview {
     @Column(name = "id")
     private Long id;
     
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
+    
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Long userId;
+//    private Long userId;
     
     @ManyToOne()
-    @JoinColumn(name = "")
-    private Long restaurantId;
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+    
+//    private Long restaurantId;
     
     @Column(name = "peanut_score", scale = 2)
     private double peanutScore;
