@@ -4,47 +4,46 @@
  */
 package com.example.diningReviewApi.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.util.List;
 
 /**
  *
  * @author Thomas
  */
 @Entity
-@Table(name = "restaurants")
-public class Restaurant {
+@Table(name = "reviews")
+public class DiningReview {
     
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "name", nullable = false)
-    private String name;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Long userId;
     
-    @Column(name = "city", nullable = false)
-    private String city;
+    @ManyToOne()
+    @JoinColumn(name = "")
+    private Long restaurantId;
     
-    @Column(name = "zip_code", nullable = false)
-    private int zipCode;
-    
-    @Column(name = "street", nullable = false)
-    private String street;
-    
-    @OneToMany(mappedBy = "restaurant")
-    private List<DiningReview> reviews;
-    
+    @Column(name = "peanut_score", scale = 2)
     private double peanutScore;
     
+    @Column(name = "egg_score")
     private double eggScore;
     
+    @Column(name = "dairy_score")
     private double dairyScore;
     
-    private double totalScore;
+    @Column(name = "comment")
+    private String comment;
 }

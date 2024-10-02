@@ -16,29 +16,30 @@ import jakarta.persistence.Table;
  */
 
 @Entity
-@Table(name = "USER")
+@Table(name = "user")
 public class User {
     
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
     
-    @Column(unique = true, nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
     
-    @Column(nullable = false)
+    @Column(name = "city", nullable = false)
     private String city;
     
-    @Column(nullable = false)
+    @Column(name = "zip_code", nullable = false)
     private int zipCode;
     
-    @Column(nullable = false)
+    @Column(name = "peanut_allergy", nullable = false)
     private boolean peanutAllergy;
     
-    @Column(nullable = false)
+    @Column(name = "egg_allergy", nullable = false)
     private boolean eggAllergy;
     
-    @Column(nullable = false)
+    @Column(name = "dairy_allergy", nullable = false)
     private boolean dairyAllergy;
 
     public User(Long id, String name, String city, int zipCode, boolean peanutAllergy, boolean eggAllergy, boolean dairyAllergy) {
