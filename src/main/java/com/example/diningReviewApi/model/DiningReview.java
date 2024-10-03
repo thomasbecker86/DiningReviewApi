@@ -11,7 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -41,7 +40,7 @@ public class DiningReview {
     
 //    private Long restaurantId;
     
-    @Column(name = "peanut_score", scale = 2)
+    @Column(name = "peanut_score")
     private double peanutScore;
     
     @Column(name = "egg_score")
@@ -52,4 +51,37 @@ public class DiningReview {
     
     @Column(name = "comment")
     private String comment;
+    
+    public DiningReview() {        
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public double getPeanutScore() {
+        return peanutScore;
+    }
+
+    public double getEggScore() {
+        return eggScore;
+    }
+
+    public double getDairyScore() {
+        return dairyScore;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+    
+    
 }

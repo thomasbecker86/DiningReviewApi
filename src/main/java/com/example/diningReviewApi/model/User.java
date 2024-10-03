@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +48,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<DiningReview> reviews;
 
+    public User() {        
+    }
+    
+    /*
     public User(Long id, String name, String city, int zipCode, boolean peanutAllergy, boolean eggAllergy, boolean dairyAllergy) {
         this.id = id;
         this.name = name;
@@ -55,14 +60,12 @@ public class User {
         this.peanutAllergy = peanutAllergy;
         this.eggAllergy = eggAllergy;
         this.dairyAllergy = dairyAllergy;
+        this.reviews = new ArrayList<>();
     }
-
+    */
+    
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -112,5 +115,12 @@ public class User {
     public void setDairyAllergy(boolean dairyAllergy) {
         this.dairyAllergy = dairyAllergy;
     }  
+
+    public List<DiningReview> getReviews() {
+        return reviews;
+    }
     
+    public void addReview(DiningReview review) {
+        this.reviews.add(review);
+    }
 }
