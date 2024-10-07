@@ -43,7 +43,7 @@ public class RestaurantController {
     public Restaurant getRestaurantDetails(@PathVariable Long id) {
         Optional<Restaurant> existingRestaurant = this.restaurantRepository.findById(id);
         if (existingRestaurant.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A restaurant with this id was not found in the database.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A restaurant with this id was not found in the database.");
         }
         return existingRestaurant.get();
     }
