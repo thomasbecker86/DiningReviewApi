@@ -4,6 +4,10 @@
  */
 package com.example.diningReviewApi.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,44 +21,45 @@ import java.util.List;
  *
  * @author Thomas
  */
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 @Table(name = "restaurants")
 public class Restaurant {
     
     @Id
     @GeneratedValue
-    @Column(name = "id")
+//    @Column(name = "id")
     private Long id;
     
-    @Column(name = "name", nullable = false)
+//    @Column(name = "name", nullable = false)
     private String name;
     
-    @Column(name = "city", nullable = false)
+//    @Column(name = "city", nullable = false)
     private String city;
     
-    @Column(name = "zip_code", nullable = false)
-    private int zipCode;
+//    @Column(name = "zip_code", nullable = false)
+    private Integer zipCode;
     
-    @Column(name = "street", nullable = false)
+//    @Column(name = "street", nullable = false)
     private String street;
     
-    @OneToMany(mappedBy = "restaurant")
-    private List<DiningReview> reviews;
+//    @OneToMany(mappedBy = "restaurant")
+//    private List<DiningReview> reviews;
     
-    @Column(name = "peanut_score")
+//    @Column(name = "peanut_score")
     private Double peanutScore;
     
-    @Column(name = "egg_score")
+//    @Column(name = "egg_score")
     private Double eggScore;
     
-    @Column(name = "dairy_score")
+//    @Column(name = "dairy_score")
     private Double dairyScore;
     
-    @Column(name = "total_score")
+//    @Column(name = "total_score")
     private Double totalScore;
 
-    public Restaurant() {        
-    }
     /*
     public Restaurant(Long id, String name, String city, int zipCode, String street) {
         this.id = id;
@@ -68,66 +73,11 @@ public class Restaurant {
         this.dairyScore = null;
         this.totalScore = null;
     }
-    */
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public List<DiningReview> getReviews() {
-        return reviews;
-    }
-
-    public Double getPeanutScore() {
-        return peanutScore;
-    }
-
-    public Double getEggScore() {
-        return eggScore;
-    }
-
-    public Double getDairyScore() {
-        return dairyScore;
-    }
-
-    public Double getTotalScore() {
-        return totalScore;
-    }
     
-    
+    /*
     public void addReview(DiningReview review) {
         this.reviews.add(review);
         //TODO: update scores
     }
+    */
 }

@@ -5,6 +5,8 @@
 package com.example.diningReviewApi.repository;
 
 import com.example.diningReviewApi.model.Restaurant;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,4 +15,8 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
     
+    public Optional<Restaurant> findByNameAndZipCode(String name, Integer zipCode);
+    public List<Restaurant> findByZipCodeAndPeanutScoreNotNull(Integer zipCode);
+    public List<Restaurant> findByZipCodeAndEggScoreNotNull(Integer zipCode);
+    public List<Restaurant> findByZipCodeAndDairyScoreNotNull(Integer zipCode);
 }

@@ -4,7 +4,10 @@
  */
 package com.example.diningReviewApi.model;
 
-import jakarta.persistence.CascadeType;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,13 +20,16 @@ import jakarta.persistence.Table;
  *
  * @author Thomas
  */
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 @Table(name = "reviews")
 public class DiningReview {
     
     @Id
     @GeneratedValue
-    @Column(name = "id")
+//    @Column(name = "id")
     private Long id;
     
     @ManyToOne()
@@ -40,48 +46,16 @@ public class DiningReview {
     
 //    private Long restaurantId;
     
-    @Column(name = "peanut_score")
-    private double peanutScore;
+//    @Column(name = "peanut_score")
+    private Integer peanutScore;
     
-    @Column(name = "egg_score")
-    private double eggScore;
+//    @Column(name = "egg_score")
+    private Integer eggScore;
     
-    @Column(name = "dairy_score")
-    private double dairyScore;
+//    @Column(name = "dairy_score")
+    private Integer dairyScore;
     
-    @Column(name = "comment")
-    private String comment;
-    
-    public DiningReview() {        
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public double getPeanutScore() {
-        return peanutScore;
-    }
-
-    public double getEggScore() {
-        return eggScore;
-    }
-
-    public double getDairyScore() {
-        return dairyScore;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-    
+//    @Column(name = "comment")
+    private String comment;    
     
 }
