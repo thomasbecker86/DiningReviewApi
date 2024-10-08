@@ -5,6 +5,8 @@
 package com.example.diningReviewApi.repository;
 
 import com.example.diningReviewApi.model.DiningReview;
+import com.example.diningReviewApi.model.ReviewStatus;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,4 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ReviewRepository extends CrudRepository<DiningReview, Long> {
     
+    public List<DiningReview> findByReviewStatus(ReviewStatus status);
 }

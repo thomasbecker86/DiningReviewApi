@@ -58,4 +58,5 @@ public class DiningReview {
 //    @Column(name = "comment")
     private String comment;    
     
+    private ReviewStatus reviewStatus;
 }

@@ -38,13 +38,21 @@ public class ReviewController {
     
     //TODO: Input-Validierung, HttpStatus
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public DiningReview addReview(@RequestBody DiningReview review, @PathVariable String userName) {
+        this.validateIfUserNameNotEmpty(userName);
+        
         Optional<User> optionalUser = this.userRepository.findByName(userName);
         if (optionalUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You don't have permission to submit a review.");
         }
         return this.reviewRepository.save(review);
+    }
+    
+    private void validateIfUserNameNotEmpty(String userName) {
+        if (userName == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
     
 }
