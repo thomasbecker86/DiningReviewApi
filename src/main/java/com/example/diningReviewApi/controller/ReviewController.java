@@ -5,9 +5,10 @@
 package com.example.diningReviewApi.controller;
 
 import com.example.diningReviewApi.model.DiningReview;
+import com.example.diningReviewApi.model.Restaurant;
+import com.example.diningReviewApi.model.ReviewStatus;
 import com.example.diningReviewApi.model.User;
-import com.example.diningReviewApi.repository.ReviewRepository;
-import com.example.diningReviewApi.repository.UserRepository;
+import com.example.diningReviewApi.repository.*;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,27 +31,34 @@ public class ReviewController {
     
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
+    private final RestaurantRepository restaurantRepository;
 
-    public ReviewController(ReviewRepository reviewRepository, UserRepository userRepository) {
+    public ReviewController(ReviewRepository reviewRepository, UserRepository userRepository, RestaurantRepository restaurantRepository) {
         this.reviewRepository = reviewRepository;
         this.userRepository = userRepository;
+        this.restaurantRepository = restaurantRepository;
     }
     
     //TODO: Input-Validierung, HttpStatus
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
     public DiningReview addReview(@RequestBody DiningReview review, @PathVariable String userName) {
-        this.validateIfUserNameNotEmpty(userName);
+        this.validateReview(review);
         
-        Optional<User> optionalUser = this.userRepository.findByName(userName);
-        if (optionalUser.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You don't have permission to submit a review.");
-        }
+        review.setReviewStatus(ReviewStatus.PENDING);
         return this.reviewRepository.save(review);
     }
     
-    private void validateIfUserNameNotEmpty(String userName) {
-        if (userName == null) {
+    private void validateReview(DiningReview review) {
+        Optional<User> optionalUser = this.userRepository.findById(review.getUser().getId());
+        if (optionalUser.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findById(review.getRestaurant().getId());
+        if (optionalRestaurant.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        if (review.getPeanutScore() == null && review.getEggScore() == null && review.getDairyScore() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
