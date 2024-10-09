@@ -50,7 +50,7 @@ public class UserController {
         return this.userRepository.save(user);
     }
     
-    @PutMapping(path = "/{name}")
+    @PutMapping(path = "/{userName}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public User updateUser(@RequestBody User user, @PathVariable String userName) {
         this.validateIfUserNameNotEmpty(userName);

@@ -1,0 +1,19 @@
+<html>
+    <title>Get user</title>
+    <script>
+        function getUser() {
+            const userName = document.getElementById('user_name');
+            fetch(`http://localhost:8080/users/${userName.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    const responseField = document.getElementById('responseField');
+                    responseField.innerHTML = JSON.stringify(data);
+                });
+        }
+    </script>
+    <h2 id="user_label">Get a user</h2>
+    User name: <input id="user_name"><br>
+    <button onclick="getUser()">Submit</button>
+    <h2 id="response_label">Json Response:</h2>
+    <div id="responseField"></div>
+</html>
