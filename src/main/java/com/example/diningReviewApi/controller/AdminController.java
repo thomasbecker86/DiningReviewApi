@@ -52,7 +52,7 @@ public class AdminController {
         }        
         DiningReview reviewToUpdate = optionalReview.get();
         
-        Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findById(reviewToUpdate.getRestaurant().getId());
+        Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findById(reviewToUpdate.getRestaurantId());
         if (optionalRestaurant.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "The restaurant was not found in the database.");
         }
@@ -62,13 +62,14 @@ public class AdminController {
         } else {
             reviewToUpdate.setReviewStatus(ReviewStatus.REJECTED);
         }
-        
+        DiningReview updatedReview = this.reviewRepository.save(reviewToUpdate);
         this.updateRestaurantReviewScores(optionalRestaurant.get());
-        return this.reviewRepository.save(reviewToUpdate);
+        return updatedReview;
     }
 
     private void updateRestaurantReviewScores(Restaurant restaurant) {
         List<DiningReview> reviews = this.reviewRepository.findByRestaurantIdAndReviewStatus(restaurant.getId(), ReviewStatus.ACCEPTED);
+        System.out.println(reviews.size());
         int peanutSum = 0;
         int peanutCount = 0;
         int eggSum = 0;

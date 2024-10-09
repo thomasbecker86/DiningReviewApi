@@ -6,16 +6,12 @@ package com.example.diningReviewApi.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *
@@ -30,7 +26,6 @@ public class Restaurant {
     
     @Id
     @GeneratedValue
-//    @Column(name = "id")
     private Long id;
     
 //    @Column(name = "name", nullable = false)
@@ -48,36 +43,12 @@ public class Restaurant {
 //    @OneToMany(mappedBy = "restaurant")
 //    private List<DiningReview> reviews;
     
-//    @Column(name = "peanut_score")
     private Double peanutScore;
     
-//    @Column(name = "egg_score")
     private Double eggScore;
     
-//    @Column(name = "dairy_score")
     private Double dairyScore;
     
-//    @Column(name = "total_score")
     private Double totalScore;
 
-    /*
-    public Restaurant(Long id, String name, String city, int zipCode, String street) {
-        this.id = id;
-        this.name = name;
-        this.city = city;
-        this.zipCode = zipCode;
-        this.street = street;
-        this.reviews = new ArrayList<>();        
-        this.peanutScore = null;
-        this.eggScore = null;
-        this.dairyScore = null;
-        this.totalScore = null;
-    }
-    
-    /*
-    public void addReview(DiningReview review) {
-        this.reviews.add(review);
-        //TODO: update scores
-    }
-    */
 }

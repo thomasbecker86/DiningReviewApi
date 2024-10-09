@@ -1,0 +1,44 @@
+<html>
+    <title>Add Review</title>
+    <script>
+        function addReview() {
+            const restaurantId = document.getElementById('id');
+            const userName = document.getElementById('user');
+            const peanutScore = document.getElementById('peanutscore');
+            const eggScore = document.getElementById('eggscore');
+            const dairyScore = document.getElementById('dairyscore');
+            const comment = document.getElementById('comment');
+
+            fetch('http://localhost:8080/reviews', {
+                method: 'POST',
+                body: JSON.stringify(
+                {
+                    restaurantId: id.value,
+                    userName: user.value,
+                    peanutScore: peanutscore.value,
+                    eggScore: eggscore.value,
+                    dairyScore: dairyscore.value,
+                    comment: comment.value
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }})
+                .then(response => response.json())
+                .then(data => {
+                    const responseField = document.getElementById('responseField');
+                    responseField.innerHTML = JSON.stringify(data);
+                });
+        }
+    </script>
+    <h2 id="review_label">Add Review</h2>
+    Restaurant id: <input id="id"><br>
+    User name: <input id="user"><br>
+    Peanut Score: <input id="peanutscore"><br>
+    Egg Score: <input id="eggscore"><br>
+    Dairy Score: <input id="dairyscore"><br>
+    Comment: <input id="comment"><br>
+    <button onclick="addReview()">Submit</button>
+
+    <h2 id="response_label">Json Response:</h2>
+    <div id="responseField"></div>
+</html>

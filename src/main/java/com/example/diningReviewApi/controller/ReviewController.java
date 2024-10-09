@@ -39,10 +39,19 @@ public class ReviewController {
         this.restaurantRepository = restaurantRepository;
     }
     
-    //TODO: Input-Validierung, HttpStatus
+    @GetMapping(path = "/{id}")
+    public DiningReview getUserDetails(@PathVariable Long id) {
+
+        Optional<DiningReview> optionalReview = this.reviewRepository.findById(id);
+        if (optionalReview.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A user with this name was not found in the database.");
+        }
+        return optionalReview.get();        
+    }
+    
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public DiningReview addReview(@RequestBody DiningReview review, @PathVariable String userName) {
+    public DiningReview addReview(@RequestBody DiningReview review) {
         this.validateReview(review);
         
         review.setReviewStatus(ReviewStatus.PENDING);
@@ -50,11 +59,11 @@ public class ReviewController {
     }
     
     private void validateReview(DiningReview review) {
-        Optional<User> optionalUser = this.userRepository.findById(review.getUser().getId());
+        Optional<User> optionalUser = this.userRepository.findByName(review.getUserName());
         if (optionalUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
-        Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findById(review.getRestaurant().getId());
+        Optional<Restaurant> optionalRestaurant = this.restaurantRepository.findById(review.getRestaurantId());
         if (optionalRestaurant.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
