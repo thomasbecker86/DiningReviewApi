@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -49,13 +50,13 @@ public class RestaurantController {
     }
     
     @GetMapping(path = "/search")
-    public List<Restaurant> searchRestaurants(Integer zipCode, String allergy) {
+    public List<Restaurant> searchRestaurants(@RequestParam Integer zipcode, @RequestParam String allergy) {
         if (allergy.equalsIgnoreCase("peanut")) {
-            return this.restaurantRepository.findByZipCodeAndPeanutScoreNotNull(zipCode);
+            return this.restaurantRepository.findByZipCodeAndPeanutScoreNotNull(zipcode);
         } else if(allergy.equalsIgnoreCase("egg")) {
-            return this.restaurantRepository.findByZipCodeAndEggScoreNotNull(zipCode);
+            return this.restaurantRepository.findByZipCodeAndEggScoreNotNull(zipcode);
         } else if (allergy.equalsIgnoreCase("dairy")) {
-            return this.restaurantRepository.findByZipCodeAndDairyScoreNotNull(zipCode);
+            return this.restaurantRepository.findByZipCodeAndDairyScoreNotNull(zipcode);
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
