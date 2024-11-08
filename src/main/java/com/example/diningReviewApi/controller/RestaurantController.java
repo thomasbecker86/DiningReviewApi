@@ -9,7 +9,6 @@ import com.example.diningReviewApi.repository.RestaurantRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,20 +59,11 @@ public class RestaurantController {
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-    }
-    
+    }    
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Restaurant addRestaurant(@RequestBody Restaurant restaurant) {        
-        /*
-        Iterable<Restaurant> restaurants = this.restaurantRepository.findAll();
-        for (Restaurant restaurant : restaurants) {
-            if (restaurant.getName().equals(newRestaurant.getName()) && restaurant.getZipCode() == newRestaurant.getZipCode()) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "An restaurant with this name and zipcode already exists!");
-            }
-        }
-        */
         this.validateNewRestaurant(restaurant);
         return this.restaurantRepository.save(restaurant);
     }

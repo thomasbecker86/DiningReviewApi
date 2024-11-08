@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.RequiredArgsConstructor;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -24,18 +25,11 @@ import jakarta.persistence.Table;
 public class DiningReview {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-//    @ManyToOne()
-//    @JoinColumn(name = "user_id")
-//    private User user;
+
     private String userName;
-    
-//    @ManyToOne()
-//    @JoinColumn(name = "restaurant_id")
-//    private Restaurant restaurant;
-    
+
     private Long restaurantId;
     
     private Integer peanutScore;

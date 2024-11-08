@@ -7,5 +7,9 @@
  * Created: 07.10.2024
  */
 
---insert into RESTAURANTS (id, name, city, street, zip_code, peanut_score, egg_score, dairy_score, total_score) values (001, 'Bareburger', 'Los Angeles', 'Main street 123', 12345, 5, 4, 3, 4);
-
+INSERT INTO RESTAURANTS (NAME, CITY, STREET, ZIP_CODE) VALUES ('Drago', 'Mülheim', 'Uhlenhorstweg 2', 45478);
+INSERT INTO RESTAURANTS (NAME, CITY, STREET, ZIP_CODE) VALUES ('Mausefalle', 'Mülheim', 'Bogenstraße 8', 45475);
+INSERT INTO RESTAURANTS (NAME, CITY, STREET, ZIP_CODE) VALUES ('Taverne', 'Mülheim', 'Mühlenstraße 12', 45473);
+INSERT INTO RESTAURANTS (NAME, CITY, STREET, ZIP_CODE) VALUES ('Dal Pasatore', 'Essen', 'Ruhrallee 2', 45128);
+INSERT INTO USER (NAME, CITY, ZIP_CODE, PEANUT_ALLERGY, EGG_ALLERGY, DAIRY_ALLERGY) VALUES ('Thomas', 'Mülheim', 45479, false, false, false);
+INSERT INTO USER (NAME, CITY, ZIP_CODE, PEANUT_ALLERGY, EGG_ALLERGY, DAIRY_ALLERGY) VALUES ('Julia', 'Essen', 45136, false, false, true);

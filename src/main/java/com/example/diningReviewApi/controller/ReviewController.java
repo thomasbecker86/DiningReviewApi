@@ -40,17 +40,16 @@ public class ReviewController {
     }
     
     @GetMapping(path = "/{id}")
-    public DiningReview getUserDetails(@PathVariable Long id) {
-
+    public DiningReview getReviewDetails(@PathVariable Long id) {
         Optional<DiningReview> optionalReview = this.reviewRepository.findById(id);
         if (optionalReview.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A user with this name was not found in the database.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A review with this id was not found in the database.");
         }
         return optionalReview.get();        
     }
     
     @PostMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     public DiningReview addReview(@RequestBody DiningReview review) {
         this.validateReview(review);
         

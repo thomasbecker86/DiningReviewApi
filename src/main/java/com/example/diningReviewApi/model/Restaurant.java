@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.RequiredArgsConstructor;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -25,19 +26,15 @@ import jakarta.persistence.Table;
 public class Restaurant {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-//    @Column(name = "name", nullable = false)
     private String name;
     
-//    @Column(name = "city", nullable = false)
     private String city;
     
-//    @Column(name = "zip_code", nullable = false)
     private Integer zipCode;
     
-//    @Column(name = "street", nullable = false)
     private String street;
     
 //    @OneToMany(mappedBy = "restaurant")

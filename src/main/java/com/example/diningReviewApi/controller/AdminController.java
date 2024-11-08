@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -45,6 +46,7 @@ public class AdminController {
     }
     
     @PutMapping(path = "/reviews/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public DiningReview performReviewAction(@PathVariable Long id, @RequestBody AdminReviewAction adminReviewAction) {
         Optional<DiningReview> optionalReview = this.reviewRepository.findById(id);
         if (optionalReview.isEmpty()) {
