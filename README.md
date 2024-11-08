@@ -9,15 +9,26 @@ The scenario revolves around the following basic concepts:
 + Users
 + Restaurants
 + Reviews
++ Admin
 
 A restaurant has a set of review scores based on those submitted by users. Each restaurant has individual scores (scale from 1 to 5) for the following food allergies:
 Peanut, egg and dairy. A restaurant also has an overall score, based on the scores of the three categories.
+A user can create reviews on existing restaurants, an admin can then reject or accept a pending review.
 
 #### Project Link:
 [Dining Review API Project on Codecademy.com](https://www.codecademy.com/paths/create-rest-apis-with-spring-and-java/tracks/spring-apis-portfolio-project/modules/spring-dining-review-api/kanban_projects/dining-review-api)
+
 ### Technologys used:
 + Spring Initializr
 + H2 Database
 + Project Lombok
 
 ### Features:
+A user can...
+Restaurants...
+Admins...
+
+### Known Issues:
++ No real input validation is happening.
++ All actions concerning the administrator can only be tested via curl (no .html implemented).
++ No Authentification or Authorization implemented. 
