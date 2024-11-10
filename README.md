@@ -23,12 +23,7 @@ A user can create reviews on existing restaurants, an admin can then reject or a
 + H2 Database
 + Project Lombok
 
-### Features:
-A user can...
-Restaurants...
-Admins...
-
-### Known Issues:
-+ No real input validation is happening.
-+ All actions concerning the administrator can only be tested via curl (no .html implemented).
-+ No Authentification or Authorization implemented. 
+### Potential Improvements:
++ Implement server-side input validation.
++ Add a basic .html-file to test actions concerning the administrator (can only be tested via curl at the moment).
++ Implement authorization for users and authentification for users and admins.
